@@ -1,0 +1,24 @@
+@import 'utils';
+
+.suggest-wrapper {
+    width: 725px;
+    
+    @include media("<=medium") {
+        width: 100%;
+    }
+    margin: 0 auto;
+    margin-top: 5rem;
+    display: flex;
+    // background: $oc-gray-3;
+    padding: 1rem;
+    flex-direction: column;
+
+    .label {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: $oc-gray-6;
+        margin-left: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+}

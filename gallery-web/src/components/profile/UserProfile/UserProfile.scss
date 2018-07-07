@@ -1,0 +1,91 @@
+@import 'utils';
+
+.profile-form {
+    width: 925px;
+    margin: 0 auto;
+    margin-top: 5rem;
+    @include media("<=medium") {
+        width: 95%;
+    }
+    padding: 3rem;
+    @include media("<=medium") {
+        padding: 1rem;
+    }
+    display: flex;
+    @include media("<=medium") {
+        flex-direction: column;
+        // justify-content: center;
+    }
+    align-items: center;
+
+    border-bottom: 1px solid $oc-gray-4;
+    .profile-image {
+        // padding: 2rem;
+        img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 1px solid $oc-gray-3;
+
+            @include media("<=medium") {
+                width: 80px;
+                height: 80px;
+            }
+        }
+    }
+
+    .profile-info {
+        display: flex;
+        flex-direction: column;
+        margin-left: 3rem;
+        @include media("<=medium") {
+            margin-left: 0rem;
+        }
+        .username-and-follow {
+            display: flex;
+            flex-direction: row;
+            @include media("<=medium") {
+                justify-content: center;
+            }
+            align-items: center;
+            user-select: none;
+            .username {
+                font-size: 32px;
+                font-weight: 200;
+                @include media("<=medium") {
+                    font-size: 1rem;
+                }
+            }
+            .button {
+                margin-left: 1.5rem;
+            }
+            .setting {
+                margin-left: 2px;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                font-size: 1.5rem;
+                // font-weight: 200;
+            }
+        }
+
+        .description {
+            margin-top: 1rem;
+            display: flex;
+            .counts {
+                cursor: pointer;
+                display: flex;
+                @include media("<=medium") {
+                    flex-direction: column;
+                }
+                .count-text {
+                    font-weight: 600;
+                }
+            }
+
+            .counts + .counts {
+                margin-left: 2.5rem;
+            }
+        }
+    }       
+}

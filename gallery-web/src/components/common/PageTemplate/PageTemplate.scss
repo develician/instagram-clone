@@ -1,0 +1,12 @@
+@import 'utils';
+
+.page-template {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh);
+    main {
+        flex: 1;
+        // height: 100%;
+        background: $oc-gray-0;
+    }
+}

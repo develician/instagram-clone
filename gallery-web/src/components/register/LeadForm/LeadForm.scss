@@ -1,0 +1,25 @@
+@import 'utils';
+
+.form {
+    width: 350px;
+    @include media("<=medium") {
+        width: 100%;
+        border: none;
+        background: $oc-gray-0;
+    }
+    background: white;
+    border-radius: 2px;
+    border: 1px solid $oc-gray-3;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    .text {
+        font-weight: 600;
+
+        a {
+            color: $oc-indigo-3;
+        }
+    }   
+}

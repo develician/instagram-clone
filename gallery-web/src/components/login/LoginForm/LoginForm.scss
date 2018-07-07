@@ -1,0 +1,98 @@
+@import 'utils';
+
+.login-form {
+    width: 350px;
+    margin: 0 auto;
+    background: white;
+    border: 1px solid $oc-gray-3;
+
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+
+    @include media("<=medium") {
+        width: 100%;
+        border: none;
+        margin-top: 0rem;
+        margin-bottom: 0rem;
+        background: $oc-gray-0;
+    }
+
+    display: flex;
+    flex-direction: column;
+
+    .logo {
+        font-size: 2.5rem;
+        text-align: center;
+        user-select: none;
+        font-family: 'Galada', cursive;
+        
+        cursor: pointer;
+
+        @include media("<=small") {
+            font-size: 3rem;
+        }
+    }
+
+    .error {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        display: flex;
+        justify-content: center;
+        font-size: 1.25rem;
+        color: $oc-red-5;
+        font-weight: 600;
+    }
+
+    .form-inputs {
+        display: flex;
+        flex-direction: column;
+
+        .label {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .input {
+            margin-top: 0.5rem;
+            display: flex;
+            position: relative;
+
+            input {
+                margin: 0 auto;
+                background: $oc-gray-0;
+                font-size: 0.75rem;
+                padding-left: 0.75rem;
+                width: 90%;
+                height: 36px;
+                border: 1px solid $oc-gray-2;
+                outline: none;
+
+            }
+        }
+
+    }
+
+    .submit {
+        display: flex;
+        flex-direction: row;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+
+    }
+    .description {
+        margin-left: auto;
+        a {
+            color: $oc-blue-3;
+            font-weight: 600;
+        }
+    }
+
+    .logo + .form-inputs {
+        margin-top: 1rem;
+    }
+
+    .form-inputs + .form-inputs {
+        margin-top: 1rem;
+    }
+}

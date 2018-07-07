@@ -1,0 +1,25 @@
+@import 'utils';
+
+.list-form {
+    width: 1024px;
+    margin: 0 auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    @include media("<=medium") {
+        width: 95%;
+    }
+    background: $oc-gray-0;
+    @include material-shadow(3, 0.5);
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+
+    .description {
+        display: flex;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: 550;
+    }
+  
+}

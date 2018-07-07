@@ -1,0 +1,15 @@
+
+@import 'utils';
+
+.feed-wrapper {
+    // display: flex;
+    // background: $oc-gray-4;
+    margin: 0 auto;
+    margin-top: 8rem;
+
+    width: 825px;
+    @include media("<=medium") {
+        width: 100%;
+        margin-top: 0rem;
+    }
+}

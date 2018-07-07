@@ -1,0 +1,140 @@
+@import 'utils';
+
+.form {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid $oc-gray-4;
+
+    border-radius: 3px;
+    width: 600px;
+    @include media("<=medium") {
+        width: 100%;
+        border: none;
+    }
+    .wrapper { 
+        display: flex;
+        flex-direction: column;
+        .top-nav {
+            @include media("<=medium") {
+                background: $oc-gray-0;
+            }
+            background: white;
+            padding-bottom: 1rem;
+            padding-top: 1rem;
+            padding-left: 1rem;
+            display: flex;
+            border-bottom: 1px solid $oc-gray-4;
+            .img-wrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                img {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    cursor: pointer;
+                }
+            }
+
+            .username {
+                display: flex;
+                align-items: center;
+                .text {
+                    font-weight: 600;
+                }
+            }
+
+            .img-wrapper + .username {
+                margin-left: 1rem;
+            }
+        }
+        
+        // padding: 1rem;
+    }
+
+    .image-zone {
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    .buttons {
+        padding: 1rem;
+        .icon {
+            // padding: 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            
+        }
+
+        .icon + .icon {
+            margin-left: 1rem;
+        }
+    }
+
+    .caption-wrapper {
+        display: flex;
+        // justify-content: center;
+        margin-left: 1rem;
+
+        .username {
+            font-weight: 600;
+        }
+    }
+
+    .reply-wrapper {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        margin-left: 1rem;
+        .more-reply {
+            color: $oc-gray-6;
+            font-weight: 600;
+        }
+
+        ul {
+            
+            list-style-type: none;
+            padding: 0;
+            li {
+                display: flex;
+                
+                .username {
+                    font-weight: 600;
+                }
+
+                .reply {
+                    word-break: break-all;
+                }
+            }
+
+            li + li {
+                margin-top: 0.5rem;
+            }
+        }
+        // .replies {
+        //     margin-top: 0.5rem;
+        //     display: flex;
+        //     .username {
+        //         font-weight: 600;
+        //     }
+
+        //     .reply {
+
+        //     }
+        // }
+    }
+
+    & + & {
+        border-top: 1px solid $oc-gray-3;
+    }
+}
+
+.form + .form {
+    margin-top: 3.5rem;
+    @include media("<=medium") {
+        margin-top: 0rem;
+    }
+}

@@ -1,0 +1,115 @@
+@import 'utils';
+
+.login-form {
+    width: 350px;
+    margin: 0 auto;
+    background: white;
+    border: 1px solid $oc-gray-3;
+    // @include material-shadow(4, 0.5);
+    @include media("<=medium") {
+        width: 95%;
+    }
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+
+    // background: $oc-gray-1;
+
+
+    display: flex;
+    flex-direction: column;
+
+    .logo {
+        // font-weight: 800;
+        font-size: 2.5rem;
+        text-align: center;
+        user-select: none;
+        cursor: pointer;
+        font-family: 'Galada', cursive;
+
+        @include media("<=small") {
+            font-size: 1rem;
+        }
+    }
+
+    .leading {
+        font-size: 1rem;
+        padding: 1rem;
+        font-weight: 700;
+        color: $oc-gray-6;
+    }
+
+    .error {
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        display: flex;
+        justify-content: center;
+        font-size: 1.25rem;
+        color: $oc-red-5;
+        font-weight: 600;
+    }
+
+    .form-inputs {
+        display: flex;
+        flex-direction: column;
+
+        .label {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .input {
+            margin-top: 0.5rem;
+            display: flex;
+            // input {
+            //     // flex: 1;
+            //     // width: 100%;
+            //     margin: 0 auto;
+            //     border: 1px solid $oc-gray-2;
+            //     outline: none;
+            //     height: 2rem;
+            //     font-size: 1.5rem;
+
+            // }
+
+            input {
+                margin: 0 auto;
+                background: $oc-gray-0;
+                font-size: 0.75rem;
+                padding-left: 0.75rem;
+                width: 90%;
+                height: 36px;
+                border: 1px solid $oc-gray-2;
+                outline: none;
+
+            }
+        }
+
+    }
+
+    .submit {
+        display: flex;
+        flex-direction: row;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+
+    }
+
+    .description {
+        margin-left: auto;
+        a {
+            color: $oc-blue-3;
+            font-weight: 600;
+        }
+    }
+
+    .logo + .form-inputs {
+        margin-top: 1rem;
+    }
+
+    .form-inputs + .form-inputs {
+        margin-top: 1rem;
+    }
+}
+
+

@@ -1,0 +1,294 @@
+@import 'utils';
+
+.loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.image-detail-form {
+    width: 825px;
+    
+
+
+    margin: 0 auto;
+    margin-top: 8rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    border: 1px solid $oc-gray-2;
+
+    display: flex;
+    flex-direction: row;
+    @include media("<=medium") {
+        width: 90%;
+        flex-direction: column;
+    }
+
+    .sticky-user-profile {
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        @include media(">medium") {
+            display: none;
+        }
+
+        // .image {
+            img {
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+                border: 1px solid $oc-gray-3;
+            }
+        // }
+
+        .username {
+            margin-left: 1rem;
+        }
+
+        .setting-icon {
+            margin-left: auto;
+            .icon {
+                font-size: 1.25rem;
+
+            }
+        }
+    }
+
+    .image-container {
+        display: flex;
+        flex: 3;
+        justify-content: center;
+        align-items: center;
+         img {
+             object-fit: cover;
+             flex: 1;
+            width: calc(100vh - 15rem);
+            height: 100%;
+            border-radius: 3px;
+
+            @include media("<=medium") {
+                width: 100%;
+                height: 300px;
+                border-radius: 0px;
+            }
+         }   
+
+    }   
+
+    .right-zone {
+        flex: 2;
+        display: flex;
+        flex-direction: column;
+        .profile-wrapper {
+            display: flex;
+            .profile-zone {
+                // width: 100%;
+                flex: 1;
+                margin-left: 1rem;
+                margin-right: 1rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 1rem;
+                border-bottom: 1px solid $oc-gray-3;
+                @include media("<=medium") {
+                    display: none;
+                }
+                .profile-image {
+                    img {
+                        width: 75px;
+                        height: 75px;
+                        border-radius: 50%;
+
+                        
+                        
+                    }
+                    
+                }
+                .username {
+                    font-size: 1.25rem;
+                    font-weight: 600;
+                }
+    
+                .setting-icon {
+                    margin-left: auto;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    .icon {
+                        font-size: 2rem;
+                        cursor: pointer;
+                    }
+                }
+                .profile-image + .username {
+                    margin-left: 1rem;
+                }
+            }
+        }
+
+        .reply {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+
+            .captions {
+                padding-left: 1rem;
+                padding-top: 1rem;
+                display: flex;
+                align-items: center;
+                .username {
+                    font-weight: 550;
+                }
+                
+                .caption {
+                    margin-left: 1rem;
+                }
+
+            }
+
+            .reply-zone {
+                // background: $oc-gray-4;
+                display: flex;
+                flex-direction: column;
+                height: 350px;
+                // min-height: 250px;
+                @include media("<=medium") {
+                    // flex: 1;
+                    height: 0px;
+                    min-height: 200px;
+                    max-height: 350px;
+                }
+                overflow: auto;
+                padding: 1rem;
+
+                .comment {
+                    flex: 1;
+                    display: flex;
+                    flex-direction: column;
+                    // padding-bottom: 1rem;
+                    // padding-top: 1rem;
+                    // height: 200px;
+                    // @include media("<=medium") {
+                    //     padding-bottom: 2rem;
+                    //     padding-top: 2rem;
+                    // }
+                    .user-caption {
+                        display: flex;
+                        padding-bottom: 1.5rem;
+                        .username {
+                            font-weight: 550;
+                        }   
+                        .text {
+                            margin-left: 1rem;
+                            word-break: break-all;
+                            white-space: pre-line;
+                        }
+                    }
+
+                    .replies {
+                        margin-top: 1rem;
+                        ul {
+                            margin: 0;
+                            padding: 0;
+                            li {
+                                // margin: 0;
+                                // padding: 0;
+
+                                list-style: none;
+                                word-break: break-all;
+                                white-space: pre-line;
+                                display: flex;
+                                flex-direction: row;
+                                .username {
+                                    
+                                    font-weight: 550;
+                                }
+
+                                .span {
+                                    
+                                    flex: 1;
+                                    display: flex;
+                                    align-items: center;
+                                    flex-direction: row;
+                                    margin-left: 1rem;
+                                    .clear-icon {
+                                        cursor: pointer;
+                                        margin-left: auto;
+                                        color: $oc-gray-5;
+                                    }
+                                    
+                                }
+                                
+                            }
+
+                            li + li {
+                                // margin-top: 1rem;
+                                
+                            }
+                        }
+                    }
+                }
+
+                .comment + .comment {
+                    margin-top: 1rem;
+                }
+
+            }
+
+            .icons-zone {
+                display: flex;
+                margin-top: auto;
+                padding: 1rem;
+                padding-left: 0rem;
+                border-top: 1px solid $oc-gray-3;
+                margin-left: 1rem;
+                margin-right: 0.5rem;
+                .icon {
+                    cursor: pointer;
+                    font-size: 1.25rem;
+                }
+
+                .right-icon {
+                    margin-left: auto;
+                    cursor: pointer;
+                }
+
+                .icon + .icon {
+                    margin-left: 1rem;
+                }
+            }
+
+            .like-count {
+                margin-left: 1rem;
+                padding-left: 0rem;
+                margin-bottom: 0.5rem;
+            }
+    
+            .write-reply {
+                display: flex;
+                align-items: center;
+                margin-top: auto;
+                margin-bottom: 0.25rem;
+                input {
+                    // margin-left: 0.5rem;
+                    margin-right: 0.5rem;
+                    flex: 1;
+                    width: 100%;
+                    height: 2rem;
+                    font-size: 1.25rem;
+                    // padding: 0.5rem;
+                    // border: 1px solid $oc-gray-3;
+                    border: none;
+                    // border-radius: 10px;
+                    // border: none;
+                    border-top: 1px solid $oc-gray-3;
+                    padding-top: 1rem;
+                    padding-bottom: 1rem;
+                    margin-left: 1rem;
+                    outline: none;
+                }
+            }
+        }
+    }
+}

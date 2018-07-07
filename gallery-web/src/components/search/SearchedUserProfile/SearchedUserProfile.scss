@@ -1,0 +1,27 @@
+@import 'utils';
+
+.searched-user-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .profile {
+        img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        .username {
+            display: flex;
+            justify-content: center;
+        }
+        
+    }
+    padding: 1rem;
+    cursor: pointer;
+}
+
+.searched-user-form + .searched-user-form {
+    margin-top: 1.5rem;
+    border-top: 1px solid $oc-gray-5;
+}

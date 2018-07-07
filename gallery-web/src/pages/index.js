@@ -1,0 +1,10 @@
+export { default as Home } from './Home';
+export { default as Search } from './Search';
+export { default as Login } from './Login';
+export { default as Register } from './Register';
+export { default as MyPage } from './MyPage';
+export { default as Editor } from './Editor';
+export { default as ImageDetail } from './ImageDetail';
+export { default as UserProfile } from './UserProfile';
+export { default as Explore } from './Explore';
+export { default as NotFound } from './NotFound';

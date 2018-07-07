@@ -1,0 +1,44 @@
+@import 'utils';
+
+
+.post-modal {
+    background: white;
+    position: relative;
+    width: 100%;
+
+    padding: 1rem;
+
+    @include media("<=medium") {
+        width: 300px;
+    }
+
+
+    .close-button {
+        display: flex;
+        // flex-direction: flex-end;
+        .icon {
+            margin-left: auto;
+            font-size: 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 1rem;
+        }
+    }
+
+    .description {
+        font-size: 1.25rem;
+        font-weight: 600;
+        text-align: center;
+        @include media("<=medium") {
+            font-size: 0.85rem;
+        }
+    }
+
+    .buttons {
+        padding: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+   
+}

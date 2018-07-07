@@ -1,0 +1,15 @@
+@import 'utils';
+
+.image-list {
+    // width: 1024px;
+    margin: 0 auto;
+
+    @include media("<=medium") {
+        width: 100%;
+    }
+
+    display: flex;
+    flex-direction: column;
+
+    
+}

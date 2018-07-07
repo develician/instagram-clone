@@ -1,0 +1,53 @@
+@import 'utils';
+
+.wrapper {
+    background: white;
+
+    .user {
+        padding: 1rem;
+        border-bottom: 1px solid $oc-gray-3;
+        display: flex;
+        .profile-image {
+            
+            display: flex;
+            align-items: center;
+            img {
+                border-radius: 50%;
+                border: 1px solid $oc-gray-3;
+                width: 50px;
+                height: 50px;
+                cursor: pointer;
+            }
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            .username {
+                cursor: pointer;
+                font-weight: 700;
+                font-size: 0.8rem;
+            }
+            .name {
+                color: $oc-gray-6;
+                font-size: 0.8rem;
+                font-weight: 600;
+            }
+            .desc {
+                color: $oc-gray-6;
+                font-size: 0.8rem;
+                font-weight: 600;
+            }
+        }
+
+        .button {
+            display: flex;
+            margin-left: auto;
+            align-items: center;
+        }
+
+        .profile-image + .user-info {
+            margin-left: 1rem;
+        }
+    }
+}

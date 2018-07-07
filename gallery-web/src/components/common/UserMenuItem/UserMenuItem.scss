@@ -1,0 +1,18 @@
+@import 'utils';
+
+.menu-item {
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    color: $oc-gray-7;
+    cursor: pointer;
+    &:hover {
+        background: $oc-gray-0;
+        font-weight: 500;
+        color: $oc-cyan-6;
+    }
+
+    & + & {
+        border-top: 1px solid $oc-gray-3;
+    }
+}
