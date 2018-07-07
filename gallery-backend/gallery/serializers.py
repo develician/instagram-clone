@@ -41,6 +41,11 @@ class LikeSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class CreatePhotoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Photo
+        fields = '__all__'
+        
 class PhotoSerializer(serializers.ModelSerializer):
     comments = CommentSerializer(many=True)
     is_liked = serializers.SerializerMethodField()

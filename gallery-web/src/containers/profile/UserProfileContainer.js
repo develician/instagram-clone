@@ -10,6 +10,7 @@ import Loading from 'components/profile/Loading';
 import NoContent from 'components/profile/NoContent';
 
 const $ = window.$;
+// const posts = this.props.posts;
 
 class UserProfileContainer extends Component {
 
@@ -249,6 +250,7 @@ class UserProfileContainer extends Component {
         if(this.props.postPenderLoading && this.state.firstPenderLoading) {
             return null;
         }
+        
         return (
             <React.Fragment>
                 <UserProfile

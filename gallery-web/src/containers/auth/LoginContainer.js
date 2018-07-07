@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { withRouter } from 'react-router-dom';
 import * as authActions from 'store/modules/auth';
 import LoginForm from 'components/login/LoginForm';
-import LoginWrapper from '../../components/login/LoginWrapper/LoginWrapper';
+import LoginWrapper from 'components/login/LoginWrapper';
 
 class LoginContainer extends Component {
 

@@ -46,6 +46,52 @@ class PhotosByUsername(APIView):
     
         return Response(data=serializer.data, headers=headers, status=status.HTTP_200_OK)
 
+class CreatePhoto(APIView):
+    def post(self, request, *args, **kwargs):
+        user = request.user
+
+        serializer = serializers.CreatePhotoSerializer(
+            data=request.data
+        )
+
+        if serializer.is_valid():
+            serializer.save(owner=user)
+            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            print(serializer.errors)
+            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class UpdatePhoto(APIView):
+    def find_own_image(self, image_id, user):
+        try:
+            image = models.Photo.objects.get(id=image_id, owner=user)
+            return image
+        except models.Photo.DoesNotExist:
+            return None
+    def put(self, request, image_id, format=None):
+        user = request.user
+
+        image = self.find_own_image(image_id, user)
+
+        if image is None:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        if image.image is not None:
+            image.image.delete()
+
+        serializer = serializers.CreatePhotoSerializer(
+            image,
+            data=request.data,
+            partial=True
+        )
+
+        if serializer.is_valid():
+            serializer.save(owner=user)
+            return Response(data=serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 
 class Photos(APIView):
     def get(self, request, *args, **kwargs):

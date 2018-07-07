@@ -25,13 +25,13 @@ class ModalWrapper extends Component {
   }
 
   render() {
-    const { children, visible } = this.props;
+    const { children, visible, hideProfileModal } = this.props;
     if(!visible) {
       return null;
     }
     return (  
       <React.Fragment>
-        <div className={cx('gray-background')} />
+        <div className={cx('gray-background')} onClick={hideProfileModal}/>
         <div className={cx('modal-wrapper')}>
           <div className={cx('modal')}>
             {children}

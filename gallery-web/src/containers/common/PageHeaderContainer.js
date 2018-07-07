@@ -38,6 +38,10 @@ class PageHeaderContainer extends Component {
         });
     }
 
+    componentWillUnmount() {
+        $(window).unbind();
+    }
+
     componentDidUpdate(prevProps, prevState) {
         if(prevProps.username !== this.props.username && this.props.username.trim().length > 0) {
             this.showSearchPanel();

@@ -25,6 +25,19 @@
     }
   }
 
+  &.update-profile-submit {
+    background: $oc-blue-6;
+    border-radius: 6px;
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+    &:hover {
+      background: $oc-blue-5;
+    }
+    &:active {
+      background: $oc-blue-6;
+    }
+  }
+
   &.profile-edit {
     // background: $oc-gray-1;
     border: 1px solid $oc-gray-3;

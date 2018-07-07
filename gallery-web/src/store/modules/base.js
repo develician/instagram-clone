@@ -21,6 +21,7 @@ const SHOW_COMMENT_MODAL = 'base/SHOW_COMMENT_MODAL';
 const HIDE_COMMENT_MODAL = 'base/HIDE_COMMENT_MODAL';
 const SHOW_SEARCH_PANEL = 'base/SHOW_SEARCH_PANEL';
 const HIDE_SEARCH_PANEL = 'base/HIDE_SEARCH_PANEL';
+const UPDATE_SELECTION = 'base/UPDATE_SELECTION';
 
 // action creator
 export const checkLogged = createAction(CHECK_LOGGED, BaseAPI.checkLogged);
@@ -39,6 +40,7 @@ export const showCommentModal = createAction(SHOW_COMMENT_MODAL);
 export const hideCommentModal = createAction(HIDE_COMMENT_MODAL);
 export const showSearchPanel = createAction(SHOW_SEARCH_PANEL);
 export const hideSearchPanel = createAction(HIDE_SEARCH_PANEL);
+export const updateSelection = createAction(UPDATE_SELECTION);
 
 // initial state
 const initialState = Map({
@@ -52,7 +54,8 @@ const initialState = Map({
     followModalVisible: false,
     followingModalVisible: false,
     commentModalVisible: false,
-    searchPanelVisible: false
+    searchPanelVisible: false,
+    selection: 'profile'
 });
 
 // reducer
@@ -118,4 +121,8 @@ export default handleActions({
     [HIDE_SEARCH_PANEL]: (state, action) => {
         return state.set('searchPanelVisible', false);
     },
+    [UPDATE_SELECTION]: (state, action) => {
+        const { selection } = action.payload;
+        return state.set('selection', selection);
+    }
 }, initialState);

@@ -52,7 +52,7 @@ class ProfileModalContainer extends Component {
             }
         };
 
-        try {  
+        try {
             await AuthActions.logout(config);
             await localStorage.clear();
             this.hideProfileModal();
@@ -65,10 +65,10 @@ class ProfileModalContainer extends Component {
 
     render() {
         const { visible } = this.props;
-        const { hideProfileModal, 
-                handleClickFileInput, 
-                handleChangeFile,
-                handleLogout } = this;
+        const { hideProfileModal,
+            handleClickFileInput,
+            handleChangeFile,
+            handleLogout } = this;
         // const { hidePostModal, handleRemovePost, handleUpdateClick } = this;
         return (
             <React.Fragment>

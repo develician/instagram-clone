@@ -8,6 +8,16 @@ urlpatterns = [
         name='photos'
     ),
     url(
+        regex=r'^create/$',
+        view=views.CreatePhoto.as_view(),
+        name='create_photo'
+    ),
+    url(
+        regex=r'^update/(?P<image_id>[0-9]+)/$',
+        view=views.UpdatePhoto.as_view(),
+        name='update_photo'
+    ),
+    url(
         regex=r'^(?P<image_id>[0-9]+)/$',
         view=views.PhotoDetail.as_view(),
         name='photo_detail'

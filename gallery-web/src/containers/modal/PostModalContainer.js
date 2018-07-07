@@ -28,7 +28,7 @@ class PostModalContainer extends Component {
         try {
             await PostActions.removePost({image_id}, config);
             this.hidePostModal();
-            history.push('/mypage');
+            history.push(`/user/${localStorage.getItem('username')}`);
         } catch(e) {
             console.log(e);
         }

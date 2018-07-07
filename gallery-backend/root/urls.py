@@ -30,11 +30,12 @@ urlpatterns = [
 
 urlpatterns += [
     url(r'^$', TemplateView.as_view(template_name="index.html")),
-    url(r'^search/', TemplateView.as_view(template_name="index.html")),
-    url(r'^mypage/', TemplateView.as_view(template_name="index.html")),
-    url(r'^login/', TemplateView.as_view(template_name="index.html")),
-    url(r'^register/', TemplateView.as_view(template_name="index.html")),
-    url(r'^editor/', TemplateView.as_view(template_name="index.html")),
+    # url(r'^search/', TemplateView.as_view(template_name="index.html")),
+    # url(r'^mypage/$', TemplateView.as_view(template_name="index.html")),
+    # url(r'^login/', TemplateView.as_view(template_name="index.html")),
+    url(r'^register/$', TemplateView.as_view(template_name="index.html")),
+    url(r'^editor/$', TemplateView.as_view(template_name="index.html")),
+    url(r'^explore/$', TemplateView.as_view(template_name="index.html")),
     url(r'^image/(?P<id>[0-9]+)/$', TemplateView.as_view(template_name="index.html")),
     url(r'^user/(?P<username>\w+)/$', TemplateView.as_view(template_name="index.html")),
 ]

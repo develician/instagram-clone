@@ -7,4 +7,5 @@ export { default as Editor } from './Editor';
 export { default as ImageDetail } from './ImageDetail';
 export { default as UserProfile } from './UserProfile';
 export { default as Explore } from './Explore';
+export { default as AccountEdit } from './AccountEdit';
 export { default as NotFound } from './NotFound';

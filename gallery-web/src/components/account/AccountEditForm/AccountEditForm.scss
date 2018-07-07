@@ -1,0 +1,51 @@
+@import 'utils';
+
+.form {
+    display: flex;
+
+    @include media("<=medium") {
+        flex-direction: column;
+    }
+    .left-panel {
+        @include media("<=medium") {
+            border-bottom: 1px solid $oc-gray-3;
+        }
+        .menus {
+            // margin-left: 1rem;
+            display: flex;
+            flex-direction: column;
+            // border-right: 1px solid $oc-gray-3;
+            width: 250px;
+            @include media("<=medium") {
+                flex-direction: row;
+                justify-content: center;
+                margin: 0 auto;
+            }
+            .menu {
+                padding: 1rem;
+                // margin-left: 1rem;
+                cursor: pointer;
+                &.selected {
+                    border-left: 3px solid black;
+                    font-weight: 600;
+                    &:hover {
+                        border-left: 3px solid black;
+                    }
+                }
+                &:hover {
+                    background: $oc-gray-1;
+                    border-left: 3px solid $oc-gray-3;
+                    
+                }
+            }
+        }
+    }
+    .right-panel {
+        display: flex;
+        flex-direction: column;
+
+        flex: 1;
+
+        
+    }
+}

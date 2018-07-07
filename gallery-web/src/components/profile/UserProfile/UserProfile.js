@@ -26,7 +26,7 @@ const UserProfile = ({ profile,
           <div className={cx('button')}>
             {
               profile.toJS().is_self ? (
-                <Button theme="profile-edit">프로필 편집</Button>
+                <Button to={`/account/edit`}theme="profile-edit">프로필 편집</Button>
               ) :
                 profile.toJS().following ? (
                   <Button onClick={onUnfollowUser} theme="unfollow">언팔로우</Button>

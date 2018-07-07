@@ -1,0 +1,21 @@
+@import 'utils';
+.wrapped {
+    display: flex;
+    justify-content: center;
+    .wrapper {
+        width: 925px;
+        // margin: 0 auto;
+        margin-top: 8rem;
+        margin-right: 1rem;
+        margin-left: 1rem;
+        background: white;
+        border: 1px solid $oc-gray-3;
+        border-radius: 2px;
+        @include media("<=medium") {
+            width: 100%;
+            margin-top: 5rem;
+            margin-right: 0;
+            margin-left: 0;
+        }
+    }
+}

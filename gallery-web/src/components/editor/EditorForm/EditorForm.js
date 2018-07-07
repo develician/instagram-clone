@@ -10,7 +10,9 @@ class EditorForm extends Component {
 
   state = {
     file: null,
-    imagePreviewUrl: null
+    imagePreviewUrl: null,
+    error: false,
+    errorMessage: ''
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -28,7 +30,7 @@ class EditorForm extends Component {
   }
 
   componentWillUnmount() {
-    console.log('unmount');
+    // console.log('unmount');
   }
 
   handleClickImageButton = () => {
@@ -44,6 +46,7 @@ class EditorForm extends Component {
 
     formData.append('image', image);
     formData.append('caption', this.caption.value);
+    // formData.append('owner', 'testing9999');
 
     const config = {
       headers: {
@@ -53,8 +56,25 @@ class EditorForm extends Component {
     };
 
     try {
-      await axios.post(`/gallery/`, formData, config);
-      window.location.href = "/";
+      await axios.post(`/gallery/create/`, formData, config).then((response) => {
+        // console.log(response);
+        window.location.href = `/user/${localStorage.getItem('username')}`;
+      }).catch((err) => {
+        const { caption, image } = err.response.data;
+        if (caption) {
+          this.setState({
+            error: true,
+            errorMessage: '캡션을 입력해주세요.'
+          });
+        }
+        if (image) {
+          this.setState({
+            error: true,
+            errorMessage: '이미지를 선택해주세요.'
+          });
+        }
+      });
+      // 
     } catch (e) {
       console.log(e);
     }
@@ -76,7 +96,7 @@ class EditorForm extends Component {
     };
 
     try {
-      await axios.put(`/gallery/${this.props.id}/`, formData, config);
+      await axios.put(`/gallery/update/${this.props.id}/`, formData, config);
       window.location.href = `/image/${this.props.id}`;
     } catch (e) {
       console.log(e);
@@ -98,9 +118,6 @@ class EditorForm extends Component {
       });
     }
 
-
-    // console.log(this.state.imagePreviewUrl);
-
     reader.readAsDataURL(file)
   }
 
@@ -117,11 +134,22 @@ class EditorForm extends Component {
             isUpdate ? '사진 수정' : '사진 올리기'
           }
         </div>
+        {
+          this.state.error &&
+          (
+            <div className={cx('error')}>
+              <div className={cx('text')}>
+                {this.state.errorMessage}
+              </div>
+            </div>
+          )
+        }
         <div className={cx('form-value')}>
           <input
             type="file"
             name="image"
             style={{ display: 'none' }}
+            accept="image/x-png,image/gif,image/jpeg"
             ref={el => this.imageInput = el}
             onChange={this._handleImageChange} />
           <Button

@@ -10,6 +10,7 @@ import {
     ImageDetail,
     UserProfile,
     Explore,
+    AccountEdit,
     NotFound
 } from 'pages';
 import Base from 'containers/base/Base';
@@ -22,11 +23,12 @@ const App = () => {
             {/* <Route path="/search" component={Search}/> */}
             <Route path="/register" component={Register}/>
             {/* <Route path="/login" component={Login}/> */}
-            <Route path="/mypage" component={MyPage}/>
+            {/* <Route path="/mypage" component={MyPage}/> */}
             <Route path="/editor" component={Editor}/>
             <Route path="/explore" component={Explore}/>
             <Route path="/image/:id" component={ImageDetail}/>
             <Route path="/user/:username" component={UserProfile}/>
+            <Route path="/account/edit" component={AccountEdit}/>
             <Route component={NotFound}/>
             </Switch>
             <Base />
