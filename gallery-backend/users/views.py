@@ -46,11 +46,40 @@ class UserProfileById(APIView):
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
+class ChangePassword(APIView):
+    def put(self, request, username, format=None):
+        try:
+            found_user = models.User.objects.get(username=username)
+        except:
+            return None
+        
+        if not found_user.check_password(request.data['password']):
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+        
+        if request.data['password1'] is not None:
+            found_user.set_password(request.data['password1'])
+
+            found_user.save()
+
+            return Response(status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        
+
+
 class UserProfile(APIView):
     def get_user(self, username):
         try:
             found_user = models.User.objects.get(username=username)
             return found_user
+        except:
+            return None
+
+    def get_profile_image(self, username):
+        try:
+            found_user = models.User.objects.get(username=username)
+            return found_user.profile_image
         except:
             return None
 
@@ -78,9 +107,13 @@ class UserProfile(APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST)
         
         else:
+            # print(request.data)
             if request.data['profile_image'] is not None:
                 profile_image = found_user.profile_image
                 profile_image.delete()
+            else:
+                request.data['profile_image'] = self.get_profile_image(username)
+
             
             serializer = serializers.UserProfileSerializer(
                 found_user, data=request.data, partial=True

@@ -25,6 +25,7 @@ class SignUpSerializer(RegisterSerializer):
         user.save()
         return user
 
+
 class UserProfileSerializer(serializers.ModelSerializer):
     photos = photo_serializer.PhotoSerializer(many=True, read_only=True)
     post_count = serializers.ReadOnlyField()

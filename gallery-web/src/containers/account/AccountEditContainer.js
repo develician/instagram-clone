@@ -9,88 +9,165 @@ import * as userActions from 'store/modules/user';
 import * as accountActions from 'store/modules/account';
 
 class AccountEditContainer extends Component {
+  componentDidMount() {
+    this.initialize();
+    this.getUserProfile();
+  }
 
-    componentDidMount() {
-        this.getUserProfile();
+  initialize = () => {
+    const { UserActions } = this.props;
+    UserActions.initialize();
+  };
+
+  getUserProfile = async () => {
+    const { UserActions, AccountActions } = this.props;
+    const username = localStorage.getItem('username');
+    const token = localStorage.getItem('token');
+    const config = {
+      headers: {
+        Authorization: `JWT ${token}`,
+      },
+    };
+    try {
+      await UserActions.getUserProfile({ username }, config);
+      AccountActions.changeInitial({ profile: this.props.profile.toJS() });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  handleSelect = ({ selection }) => {
+    const { BaseActions } = this.props;
+    BaseActions.updateSelection({ selection });
+  };
+
+  handleChange = ({ name, value }) => {
+    const { AccountActions, UserActions } = this.props;
+    if (value.trim().length === 0) {
+      UserActions.setDisabled();
+    } else {
+      UserActions.unsetDisabled();
+    }
+    AccountActions.changeInput({ name, value });
+  };
+
+  handleChangeFile = async ({ formData }) => {
+    const token = await localStorage.getItem('token');
+    const username = await localStorage.getItem('username');
+
+    const config = {
+      headers: {
+        Authorization: `JWT ${token}`,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    };
+    const { UserActions } = this.props;
+
+    try {
+      await UserActions.changeUserProfileImage({ username }, formData, config);
+      window.location.reload();
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  handleChangeProfile = async (username, name, email) => {
+    const { UserActions } = this.props;
+
+    if (!username || !name || !email) {
+      UserActions.setError({ reason: '빈 정보는 수정할수 없습니다.' });
+      return;
     }
 
-    getUserProfile = async () => {
-        const { UserActions } = this.props;
-        const username = localStorage.getItem('username');
-        const token = localStorage.getItem('token');
-        const config = {
-            headers: {
-                'Authorization': `JWT ${token}`
-            }
-        };
-        try {
-            await UserActions.getUserProfile({username}, config);
-        } catch(e) {
-            console.log(e);
-        }
+    const storageUsername = localStorage.getItem('username');
+    const token = localStorage.getItem('token');
+
+    const config = {
+      headers: {
+        Authorization: `JWT ${token}`,
+      },
+    };
+    try {
+      await UserActions.changeUserProfile(
+        {
+          username: storageUsername,
+          name,
+          email,
+        },
+        config
+      );
+      window.location.reload();
+    } catch (e) {
+      console.log(e);
     }
+  };
 
-    handleSelect = ({ selection }) => {
-        const { BaseActions } = this.props;
-        BaseActions.updateSelection({ selection });
+  handleChangePassword = async ({ password, password1 }) => {
+    const { UserActions } = this.props;
+
+    const username = localStorage.getItem('username');
+    const token = localStorage.getItem('token');
+
+    const config = {
+      headers: {
+        Authorization: `JWT ${token}`,
+      },
+    };
+
+    try {
+      await UserActions.changeUserPassword({ username, password, password1 }, config);
+    } catch (e) {
+      console.log(e);
     }
+  };
 
-    handleChange = ({ name, value }) => {
-        const { AccountActions } = this.props;
-        AccountActions.changeInput({ name, value });
-    }
-
-
-    handleChangeFile = async ({formData}) => {
-        const token = await localStorage.getItem('token');
-        const username = await localStorage.getItem('username');
-    
-        const config = {
-            headers: {
-                'Authorization': `JWT ${token}`,
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        };
-        const { UserActions } = this.props;
-    
-        try {
-            await UserActions.changeUserProfileImage({username}, formData, config);
-            window.location.reload();
-        } catch(e) {
-            console.log(e); 
-        }
-      }
-
-    render() {
-        const { handleSelect, handleChange, handleChangeFile } = this;
-        const { selection, profile } = this.props;
-        const { username, name, email } = this.props.input.toJS();
-        return (
-            <AccountEditWrapper>
-                <AccountEditForm
-                    profile={profile}
-                    onChange={handleChange}
-                    username={username}
-                    name={name}
-                    email={email}
-                    onSelect={handleSelect}
-                    selection={selection}
-                    onChangeFile={handleChangeFile} />
-            </AccountEditWrapper>
-        );
-    }
+  render() {
+    const {
+      handleSelect,
+      handleChange,
+      handleChangeFile,
+      handleChangeProfile,
+      handleChangePassword,
+    } = this;
+    const { selection, profile, error, errorMessage, disabled } = this.props;
+    const { username, name, email, password, password1, password2 } = this.props.input.toJS();
+    return (
+      <AccountEditWrapper>
+        <AccountEditForm
+          error={error}
+          errorMessage={errorMessage}
+          profile={profile}
+          onChange={handleChange}
+          onChangePassword={handleChangePassword}
+          username={username}
+          name={name}
+          email={email}
+          onSelect={handleSelect}
+          selection={selection}
+          onChangeFile={handleChangeFile}
+          onChangeProfile={handleChangeProfile}
+          disabled={disabled}
+          password={password}
+          password1={password1}
+          password2={password2}
+        />
+      </AccountEditWrapper>
+    );
+  }
 }
 
 export default connect(
-    (state) => ({
-        selection: state.base.get('selection'),
-        input: state.account.get('input'),
-        profile: state.user.get('profile'),
-    }),
-    (dispatch) => ({
-        BaseActions: bindActionCreators(baseActions, dispatch),
-        AccountActions: bindActionCreators(accountActions, dispatch),
-        UserActions: bindActionCreators(userActions, dispatch),
-        
-    })
+  state => ({
+    selection: state.base.get('selection'),
+    input: state.account.get('input'),
+    profile: state.user.get('profile'),
+    error: state.user.get('error'),
+    errorMessage: state.user.get('errorMessage'),
+    disabled: state.user.get('disabled'),
+  }),
+  dispatch => ({
+    BaseActions: bindActionCreators(baseActions, dispatch),
+    AccountActions: bindActionCreators(accountActions, dispatch),
+    UserActions: bindActionCreators(userActions, dispatch),
+  })
 )(withRouter(AccountEditContainer));
