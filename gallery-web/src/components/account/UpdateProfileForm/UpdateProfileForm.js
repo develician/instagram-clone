@@ -16,15 +16,16 @@ const UpdateProfileForm = ({
   error,
   errorMessage,
   disabled,
+  showProfileImageModal,
 }) => {
   const handleClick = () => {
-    // if (
-    //   profile.toJS().profile_image !==
-    //   "http://localhost:8000/media/photos/profiles/no_image.png"
-    // ) {
-    //   // Show Profile Update Modal
-    //   return;
-    // }
+    if (
+      profile.toJS().profile_image !== 'http://localhost:8000/media/photos/profiles/no_image.png'
+    ) {
+      // Show Profile Update Modal
+      showProfileImageModal();
+      return;
+    }
     this.updateImageInput.click();
   };
 

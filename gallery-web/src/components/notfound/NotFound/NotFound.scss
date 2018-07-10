@@ -1,0 +1,30 @@
+@import 'utils';
+
+.wrapper {
+   margin-top: 8rem;
+    .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .text {
+            
+            .bold {
+                text-align: center;
+                font-weight: 700;
+                font-size: 1.5rem;
+            }
+
+            .thin {
+                a {
+                    margin-left: 0.35rem;
+                    color: $oc-blue-5;
+                }
+            }
+
+            .bold + .thin { 
+                margin-top: 1rem;
+            }
+        }
+
+    }
+}

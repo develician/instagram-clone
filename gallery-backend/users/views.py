@@ -107,7 +107,7 @@ class UserProfile(APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST)
         
         else:
-            # print(request.data)
+            print(request.data)
             if request.data['profile_image'] is not None:
                 profile_image = found_user.profile_image
                 profile_image.delete()
@@ -123,6 +123,10 @@ class UserProfile(APIView):
                 serializer.save()
                 return Response(data=serializer.data, status=status.HTTP_200_OK)
             else:
+                if request.data['profile_image'] == 'null':
+                    found_user.profile_image = models.User._meta.get_field('profile_image').get_default()
+                    found_user.save()
+                    return Response(status=status.HTTP_200_OK)
                 return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class Search(APIView):

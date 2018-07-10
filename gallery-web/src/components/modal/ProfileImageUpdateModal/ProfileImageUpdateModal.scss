@@ -1,0 +1,52 @@
+@import 'utils';
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    
+    .title {
+        text-align: center;
+        padding: 1rem;
+        font-weight: 700;
+        font-size: 1.5rem;
+        border-bottom: 1px solid $oc-gray-3;
+    }
+
+    .menus {
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+        .menu { 
+            text-align: center;
+            // font-weight: 600;
+            padding: 1rem;
+           
+            &:hover {
+                cursor: pointer;
+                background: $oc-gray-0;
+                // border-radius: 15px;
+                border-bottom-left-radius: 15px;
+                border-bottom-right-radius: 15px;
+            }
+            &.upload {
+                font-weight: 700;
+                color: $oc-blue-5;
+            }
+
+            &.reset {
+                font-weight: 700;
+                color: $oc-red-5;
+            }
+
+            &.cancel {
+                font-weight: 500;
+            }
+        }
+        .menu + .menu {
+            border-top: 1px solid $oc-gray-3;
+        }
+    }
+}

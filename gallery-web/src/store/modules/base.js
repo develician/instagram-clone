@@ -22,6 +22,8 @@ const HIDE_COMMENT_MODAL = 'base/HIDE_COMMENT_MODAL';
 const SHOW_SEARCH_PANEL = 'base/SHOW_SEARCH_PANEL';
 const HIDE_SEARCH_PANEL = 'base/HIDE_SEARCH_PANEL';
 const UPDATE_SELECTION = 'base/UPDATE_SELECTION';
+const SHOW_UPDATE_PROFILE_IMAGE_MODAL = 'base/SHOW_UPDATE_PROFILE_IMAGE_MODAL';
+const HIDE_UPDATE_PROFILE_IMAGE_MODAL = 'base/HIDE_UPDATE_PROFILE_IMAGE_MODAL';
 
 // action creator
 export const checkLogged = createAction(CHECK_LOGGED, BaseAPI.checkLogged);
@@ -41,88 +43,95 @@ export const hideCommentModal = createAction(HIDE_COMMENT_MODAL);
 export const showSearchPanel = createAction(SHOW_SEARCH_PANEL);
 export const hideSearchPanel = createAction(HIDE_SEARCH_PANEL);
 export const updateSelection = createAction(UPDATE_SELECTION);
+export const showUpdateProfileImageModal = createAction(SHOW_UPDATE_PROFILE_IMAGE_MODAL);
+export const hideUpdateProfileImageModal = createAction(HIDE_UPDATE_PROFILE_IMAGE_MODAL);
 
 // initial state
 const initialState = Map({
-    logged: false,
-    loggedUsername: '',
-    profileMenu: Map({
-        visible: false
-    }),
-    postModalVisible: false,
-    profileModalVisible: false,
-    followModalVisible: false,
-    followingModalVisible: false,
-    commentModalVisible: false,
-    searchPanelVisible: false,
-    selection: 'profile'
+  logged: false,
+  loggedUsername: '',
+  profileMenu: Map({
+    visible: false,
+  }),
+  postModalVisible: false,
+  profileModalVisible: false,
+  followModalVisible: false,
+  followingModalVisible: false,
+  commentModalVisible: false,
+  searchPanelVisible: false,
+  profileImageModalVisible: false,
+  selection: 'profile',
 });
 
 // reducer
-export default handleActions({
+export default handleActions(
+  {
     ...pender({
-        type: CHECK_LOGGED,
-        onSuccess: (state, action) => {
-            const { data: username } = action.payload;
-            
-            return state.set('logged', true)
-                        .set('loggedUsername', username);
-        },
-        onFailure: (state, action) => {
-            return state.set('logged', false);
-        }
+      type: CHECK_LOGGED,
+      onSuccess: (state, action) => {
+        const { data: username } = action.payload;
+
+        return state.set('logged', true).set('loggedUsername', username);
+      },
+      onFailure: (state, action) => {
+        return state.set('logged', false);
+      },
     }),
     [SET_LOGGED]: (state, action) => {
-        return state.set('logged', true);
+      return state.set('logged', true);
     },
     [SHOW_PROFILE_MENU]: (state, action) => {
-        return state.setIn(['profileMenu', 'visible'], true);
+      return state.setIn(['profileMenu', 'visible'], true);
     },
     [HIDE_PROFILE_MENU]: (state, action) => {
-        return state.setIn(['profileMenu', 'visible'], false);
+      return state.setIn(['profileMenu', 'visible'], false);
     },
     [SHOW_POST_MODAL]: (state, action) => {
-        return state.set('postModalVisible', true);
+      return state.set('postModalVisible', true);
     },
     [HIDE_POST_MODAL]: (state, action) => {
-        return state.set('postModalVisible', false);
+      return state.set('postModalVisible', false);
     },
     [SHOW_PROFILE_MODAL]: (state, action) => {
-        return state.set('profileModalVisible', true);
+      return state.set('profileModalVisible', true);
     },
     [HIDE_PROFILE_MODAL]: (state, action) => {
-        return state.set('profileModalVisible', false);
+      return state.set('profileModalVisible', false);
     },
     [SHOW_FOLLOW_MODAL]: (state, action) => {
-        return state.set('followModalVisible', true);
-                    
+      return state.set('followModalVisible', true);
     },
     [HIDE_FOLLOW_MODAL]: (state, action) => {
-        return state.set('followModalVisible', false);
+      return state.set('followModalVisible', false);
     },
     [SHOW_FOLLOWING_MODAL]: (state, action) => {
-        return state.set('followingModalVisible', true);
-                    
+      return state.set('followingModalVisible', true);
     },
     [HIDE_FOLLOWING_MODAL]: (state, action) => {
-        return state.set('followingModalVisible', false);
+      return state.set('followingModalVisible', false);
     },
     [SHOW_COMMENT_MODAL]: (state, action) => {
-        return state.set('commentModalVisible', true);
-                    
+      return state.set('commentModalVisible', true);
     },
     [HIDE_COMMENT_MODAL]: (state, action) => {
-        return state.set('commentModalVisible', false);
+      return state.set('commentModalVisible', false);
     },
     [SHOW_SEARCH_PANEL]: (state, action) => {
-        return state.set('searchPanelVisible', true);
-                    
+      return state.set('searchPanelVisible', true);
     },
     [HIDE_SEARCH_PANEL]: (state, action) => {
-        return state.set('searchPanelVisible', false);
+      return state.set('searchPanelVisible', false);
     },
     [UPDATE_SELECTION]: (state, action) => {
-        const { selection } = action.payload;
-        return state.set('selection', selection);
-    }
-}, initialState);
+      const { selection } = action.payload;
+      return state.set('selection', selection);
+    },
+    [SHOW_UPDATE_PROFILE_IMAGE_MODAL]: (state, action) => {
+      return state.set('profileImageModalVisible', true);
+    },
+    [HIDE_UPDATE_PROFILE_IMAGE_MODAL]: (state, action) => {
+      return state.set('profileImageModalVisible', false);
+    },
+  },
+  initialState
+);

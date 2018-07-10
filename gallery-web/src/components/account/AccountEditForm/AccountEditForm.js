@@ -23,6 +23,7 @@ const AccountEditForm = ({
   password1,
   password2,
   onChangePassword,
+  showProfileImageModal,
 }) => {
   const handleChange = e => {
     const { name, value } = e.target;
@@ -50,6 +51,7 @@ const AccountEditForm = ({
       <div className={cx('right-panel')}>
         {selection === 'profile' && (
           <UpdateProfileForm
+            showProfileImageModal={showProfileImageModal}
             disabled={disabled}
             error={error}
             errorMessage={errorMessage}

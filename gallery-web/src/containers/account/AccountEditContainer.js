@@ -121,6 +121,11 @@ class AccountEditContainer extends Component {
     }
   };
 
+  showProfileImageModal = () => {
+    const { BaseActions } = this.props;
+    BaseActions.showUpdateProfileImageModal();
+  };
+
   render() {
     const {
       handleSelect,
@@ -128,6 +133,7 @@ class AccountEditContainer extends Component {
       handleChangeFile,
       handleChangeProfile,
       handleChangePassword,
+      showProfileImageModal,
     } = this;
     const { selection, profile, error, errorMessage, disabled } = this.props;
     const { username, name, email, password, password1, password2 } = this.props.input.toJS();
@@ -150,6 +156,7 @@ class AccountEditContainer extends Component {
           password={password}
           password1={password1}
           password2={password2}
+          showProfileImageModal={showProfileImageModal}
         />
       </AccountEditWrapper>
     );
