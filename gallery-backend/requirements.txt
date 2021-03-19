@@ -8,7 +8,7 @@ django-allauth==0.36.0
 django-environ==0.4.5
 django-rest-auth==0.9.3
 django-webpack-loader==0.6.0
-djangorestframework==3.8.2
+djangorestframework==3.11.2
 djangorestframework-jwt==1.11.0
 enum34==1.1.6
 futures==3.2.0
