@@ -3,7 +3,7 @@ backports.functools-lru-cache==1.5
 certifi==2018.4.16
 chardet==3.0.4
 configparser==3.5.0
-Django==1.11.13
+Django==2.2.24
 django-allauth==0.36.0
 django-environ==0.4.5
 django-rest-auth==0.9.3
